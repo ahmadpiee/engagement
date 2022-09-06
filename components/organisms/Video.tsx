@@ -1,10 +1,7 @@
 import React from "react";
-import { Container, Grid, Text, GridItem, Heading } from "@chakra-ui/react";
-import Image from "next/image";
+import { Container, Heading } from "@chakra-ui/react";
 import { localize } from "@utils/lib/formatter";
 import { useRouter } from "next/router";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { FreeMode, Pagination } from "swiper";
 
 // Import Swiper styles
 import "swiper/css";

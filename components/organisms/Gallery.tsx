@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Grid, Text, GridItem, Heading } from "@chakra-ui/react";
+import { Container, Heading } from "@chakra-ui/react";
 import Image from "next/image";
 import { localize } from "@utils/lib/formatter";
 import { useRouter } from "next/router";
