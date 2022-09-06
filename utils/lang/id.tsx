@@ -13,7 +13,7 @@ const id = {
   footer: "Dibuat Dengan Tulus Oleh Lelakimu ❤️",
   gallery: "Kolase",
   intro: "Intro",
-  video: "Vidio Dokumentasi",
+  video: "Dokumentasi",
 };
 
 export default id;

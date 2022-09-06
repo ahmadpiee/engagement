@@ -13,7 +13,7 @@ const en = {
   footer: "Sincerely Made By Your Man ❤️",
   gallery: "Collage",
   intro: "Intro",
-  video: "Video Documentaion",
+  video: "Documentaion",
 };
 
 export default en;
