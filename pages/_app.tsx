@@ -27,11 +27,8 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
       </Head>
-      {/* {patternAdmin.test(router.pathname) === true ? <HeaderAdmin /> : <Header />} */}
-      <Header />
-      <div style={{ overflowX: "hidden", minHeight: "100vh" }}>
-        <Component {...pageProps} key={DisableConsole()} />
-      </div>
+      {patternAdmin.test(router.pathname) === true ? <HeaderAdmin /> : <Header />}
+      <Component {...pageProps} key={DisableConsole()} />
       <ScrollToTop />
       <Footer />
     </ChakraProvider>

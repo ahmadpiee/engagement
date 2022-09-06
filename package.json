@@ -25,6 +25,7 @@
   "devDependencies": {
     "@types/node": "^18.7.15",
     "@types/react": "^18.0.18",
+    "@types/react-scroll": "^1.8.4",
     "eslint": "8.23.0",
     "eslint-config-next": "12.2.5",
     "react-scroll": "^1.8.7",

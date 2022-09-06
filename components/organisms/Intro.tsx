@@ -9,10 +9,10 @@ const images = [require("@public/assets/images/photo1.JPG")];
 const Intro: React.FC = ({}) => {
   const { locale } = useRouter();
   return (
-    <Container marginTop={{ base: "15" }} maxW="6xl" paddingTop={{ base: "7" }} paddingLeft={{ base: "7", md: "20", lg: "15" }} paddingRight={{ base: "7", md: "20", lg: "15" }} paddingBottom={{ base: "4", md: "10" }} id="intro">
+    <Container maxW="7xl" paddingTop={{ base: "20", md: "25", lg: "40" }} paddingLeft={{ base: "7", md: "20", lg: "15" }} paddingRight={{ base: "7", md: "20", lg: "15" }} paddingBottom={{ base: "20" }} id="intro">
       <Grid style={{ justifyContent: "center", alignItems: "center" }} h="min-content" w="full" templateRows="repeat(3, 1fr)" templateColumns="repeat(8, 1fr)" gap={4} mb="4">
-        <GridItem style={{ borderRadius: "50%", overflow: "hidden" }} rowSpan={3} colSpan={{ base: 8, md: 3 }} w="full" textAlign={{ base: "center", md: "left" }}>
-          <Image height={450} width={550} alt="photo" src={images[0]} />
+        <GridItem style={{ borderRadius: "10%", overflow: "hidden" }} rowSpan={3} colSpan={{ base: 8, md: 3 }} w="full" textAlign={{ base: "center", md: "left" }}>
+          <Image objectFit="cover" loading="lazy" alt="photo" src={images[0]} />
         </GridItem>
         <GridItem rowSpan={3} colSpan={{ base: 8, md: 5 }} w="full" position={{ base: "relative" }}>
           <Text>{localize(locale, "prolouge")}</Text>

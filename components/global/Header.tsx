@@ -21,7 +21,7 @@ const Header: React.FC = (props) => {
 
   return (
     <>
-      <Flex as="header" align="center" zIndex="10" padding="1.5rem" width="full" bg={colorMode === "light" ? "white" : "gray.800"} color={colorMode === "light" ? "black" : "white"} {...props}>
+      <Flex as="header" align="center" position="fixed" zIndex="10" padding="1.5rem" width="full" bg={colorMode === "light" ? "white" : "gray.800"} color={colorMode === "light" ? "black" : "white"} {...props}>
         <Flex align="center" mr={5}>
           <Heading as="h1" size="md">
             <Link href="/">{localize(locale, "leftMenu")}</Link>
@@ -29,17 +29,17 @@ const Header: React.FC = (props) => {
         </Flex>
         <Spacer />
         <Box display={{ base: "none", md: "flex" }} mt={{ base: 4, md: 0 }}>
-          <LinkScroll activeClass="active" to="intro" spy={true} smooth={true} duration={1000}>
+          <LinkScroll activeClass="active" to="intro" spy={true} smooth={true} duration={1000} offset={50}>
             <MenuItemsButton>
               <Text fontSize="lg">{localize(locale, "intro")}</Text>
             </MenuItemsButton>
           </LinkScroll>
-          <LinkScroll activeClass="active" to="gallery" spy={true} smooth={true} duration={1000}>
+          <LinkScroll activeClass="active" to="gallery" spy={true} smooth={true} duration={1000} offset={50}>
             <MenuItemsButton>
               <Text fontSize="lg">{localize(locale, "gallery")}</Text>
             </MenuItemsButton>
           </LinkScroll>
-          <LinkScroll activeClass="active" to="video" spy={true} smooth={true} duration={1000}>
+          <LinkScroll activeClass="active" to="video" spy={true} smooth={true} duration={1000} offset={50}>
             <MenuItemsButton>
               <Text fontSize="lg">{localize(locale, "video")}</Text>
             </MenuItemsButton>
@@ -89,6 +89,7 @@ const Header: React.FC = (props) => {
             </Link>
           ) : null}
         </Box>
+        {/*  */}
         <Box style={{ marginLeft: 10 }} display={{ base: "block", md: "none", lg: "none" }}>
           <Button size="xs" bg="transparent" onClick={onOpen}>
             <GiHamburgerMenu size={18} />
@@ -133,7 +134,6 @@ const Header: React.FC = (props) => {
               </LinkScroll>
               <Spacer />
               <Kbd marginRight="1">V</Kbd>
-              <Divider />
             </Flex>
           </ModalBody>
         </ModalContent>
