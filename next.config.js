@@ -16,7 +16,27 @@ module.exports = withPWA({
     localeDetection: false,
   },
   images: {
-    domains: ["res.cloudinary.com"],
+    domains: ["jannahfirdaus-image-cloud.s3.ap-southeast-1.amazonaws.com"],
+  },
+  devIndicators: {
+    autoPrerender: false,
+  },
+  future: { webpack5: true },
+  webpack(config, options) {
+    config.module.rules.push({
+      test: /\.(ogg|mp3|wav|mpe?g|mp4)$/i,
+      use: {
+        loader: "file-loader",
+        options: {
+          publicPath: "/_next/static/sounds/",
+          outputPath: "static/sounds/",
+          name: "[name].[ext]",
+          esModule: false,
+        },
+      },
+    });
+
+    return config;
   },
 
   async headers() {

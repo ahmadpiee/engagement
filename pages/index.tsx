@@ -9,7 +9,7 @@ const Intro = dynamic(() => import("@components/organisms/Intro"));
 const Gallery = dynamic(() => import("@components/organisms/Gallery"));
 const Video = dynamic(() => import("@components/organisms/Video"));
 
-const HomePage: NextPage = () => {
+const HomePage = () => {
   const { locale } = useRouter();
 
   return (
