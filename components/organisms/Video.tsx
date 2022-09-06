@@ -48,7 +48,7 @@ const Video: React.FC = () => {
       <video
         autoPlay
         loop
-        src="https://res.cloudinary.com/tv-masa-kini/video/upload/v1662469396/Mutiara_Ahmad_1_r95lb2.mp4"
+        src="https://asset.cloudinary.com/tv-masa-kini/67293a9016cf1b580b5fcc0d6d71c346"
         style={{
           height: "550px",
           width: "100%",

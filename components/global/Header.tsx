@@ -123,6 +123,17 @@ const Header: React.FC = (props) => {
               <Spacer />
               <Kbd marginRight="1">C</Kbd>
               <Divider />
+              {/*  */}
+              <LinkScroll activeClass="active" to="video" spy={true} smooth={true} duration={1000}>
+                <Box as="button" textAlign="left" w="full" display="flex" h="min-content" paddingY="1" justifyContent="center">
+                  <Text fontSize="xs" paddingX="1" fontWeight="bold">
+                    {localize(locale, "video")}
+                  </Text>
+                </Box>
+              </LinkScroll>
+              <Spacer />
+              <Kbd marginRight="1">V</Kbd>
+              <Divider />
             </Flex>
           </ModalBody>
         </ModalContent>
