@@ -5,6 +5,10 @@ const withPWA = require("next-pwa")({
   disable: isProd ? false : true,
   dest: "public",
   runtimeCaching,
+  devIndicators: {
+    autoPrerender: false,
+  },
+  future: { webpack5: true },
 });
 
 module.exports = withPWA({
@@ -18,10 +22,6 @@ module.exports = withPWA({
   images: {
     domains: ["jannahfirdaus-image-cloud.s3.ap-southeast-1.amazonaws.com"],
   },
-  devIndicators: {
-    autoPrerender: false,
-  },
-  future: { webpack5: true },
   webpack(config, options) {
     config.module.rules.push({
       test: /\.(ogg|mp3|wav|mpe?g|mp4)$/i,
