@@ -1,17 +1,26 @@
 const runtimeCaching = require("next-pwa/cache");
 const isProd = process.env.NODE_ENV === "production";
 
-const withPWA = require("next-pwa")({
+const WithPWA = require("next-pwa")({
   disable: isProd ? false : true,
   dest: "public",
   runtimeCaching,
-  devIndicators: {
-    autoPrerender: false,
-  },
-  future: { webpack5: true },
 });
 
-module.exports = withPWA({
+module.exports = WithPWA({
+  devIndicators: {
+    buildActivityPosition: "bottom-left",
+  },
+  poweredByHeader: false,
+  reactStrictMode: true,
+  i18n: {
+    locales: ["id", "en"],
+    defaultLocale: "en",
+    localeDetection: false,
+  },
+  images: {
+    domains: ["jannahfirdaus-image-cloud.s3.ap-southeast-1.amazonaws.com"],
+  },
   webpack(config, options) {
     config.module.rules.push({
       test: /\.(ogg|mp3|wav|mpe?g|mp4)$/i,
@@ -27,17 +36,6 @@ module.exports = withPWA({
     });
 
     return config;
-  },
-
-  poweredByHeader: false,
-  reactStrictMode: true,
-  i18n: {
-    locales: ["id", "en"],
-    defaultLocale: "en",
-    localeDetection: false,
-  },
-  images: {
-    domains: ["jannahfirdaus-image-cloud.s3.ap-southeast-1.amazonaws.com"],
   },
 
   async headers() {
