@@ -5,9 +5,30 @@ const withPWA = require("next-pwa")({
   disable: isProd ? false : true,
   dest: "public",
   runtimeCaching,
+  devIndicators: {
+    autoPrerender: false,
+  },
+  future: { webpack5: true },
 });
 
 module.exports = withPWA({
+  webpack(config, options) {
+    config.module.rules.push({
+      test: /\.(ogg|mp3|wav|mpe?g|mp4)$/i,
+      use: {
+        loader: "file-loader",
+        options: {
+          publicPath: "/_next/static/sounds/",
+          outputPath: "static/sounds/",
+          name: "[name].[ext]",
+          esModule: false,
+        },
+      },
+    });
+
+    return config;
+  },
+
   poweredByHeader: false,
   reactStrictMode: true,
   i18n: {

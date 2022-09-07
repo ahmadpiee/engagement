@@ -46,8 +46,10 @@ const Gallery: React.FC = () => {
   const { locale } = useRouter();
 
   return (
-    <Container maxW="6xl" paddingTop={{ base: "7" }} paddingLeft={{ base: "7", md: "20", lg: "15" }} paddingRight={{ base: "7", md: "20", lg: "15" }} paddingBottom={{ base: "4", md: "10" }} id="gallery">
-      <Heading as="h2">{localize(locale, "gallery")}</Heading>
+    <Container maxW="7xl" paddingTop={{ base: "7" }} paddingLeft={{ base: "7", md: "20", lg: "15" }} paddingRight={{ base: "7", md: "20", lg: "15" }} paddingBottom={{ base: "4", md: "10" }} id="gallery">
+      <Heading marginBottom={{ base: "10", md: "6", sm: "3" }} as="h2">
+        {localize(locale, "gallery")}
+      </Heading>
       <Swiper
         slidesPerView={3}
         spaceBetween={30}
