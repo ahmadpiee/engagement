@@ -16,29 +16,44 @@ import "swiper/css/pagination";
 
 const Collages = [
   {
+    image: require("@public/assets/images/1.jpg"),
+    title: "",
+    alt: "1",
+  },
+  {
     image: require("@public/assets/images/3.jpg"),
     title: "",
-    alt: "3",
+    alt: "2",
   },
   {
     image: require("@public/assets/images/4.jpg"),
     title: "",
-    alt: "4",
+    alt: "3",
   },
   {
     image: require("@public/assets/images/5.png"),
     title: "",
-    alt: "5",
+    alt: "4",
   },
   {
     image: require("@public/assets/images/6.png"),
     title: "",
-    alt: "6",
+    alt: "5",
   },
   {
     image: require("@public/assets/images/7.png"),
     title: "",
+    alt: "6",
+  },
+  {
+    image: require("@public/assets/images/8.jpg"),
+    title: "",
     alt: "7",
+  },
+  {
+    image: require("@public/assets/images/9.jpg"),
+    title: "",
+    alt: "9",
   },
 ];
 
@@ -60,8 +75,8 @@ const Gallery: React.FC = () => {
         modules={[FreeMode, Pagination]}
         className="mySwiper"
       >
-        {Collages.map((data) => (
-          <SwiperSlide key={data.alt}>
+        {Collages.map((data, i) => (
+          <SwiperSlide key={i}>
             <Image objectFit="cover" placeholder="blur" loading="lazy" src={data.image} alt={data.alt} />
           </SwiperSlide>
         ))}
