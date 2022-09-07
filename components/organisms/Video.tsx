@@ -7,6 +7,7 @@ import dynamic from "next/dynamic";
 const MediaPlayer = dynamic(() => import("@components/molecules/media-player/MediaPlayer"), { ssr: false });
 
 const url = "https://res.cloudinary.com/tv-masa-kini/video/upload/v1662469396/Mutiara_Ahmad_1_r95lb2.mp4";
+const light = "https://res.cloudinary.com/tv-masa-kini/image/upload/v1662556413/photo1_i3pgbt.jpg";
 
 const Video: React.FC = () => {
   const { locale } = useRouter();
@@ -16,7 +17,7 @@ const Video: React.FC = () => {
       <Heading marginBottom={{ base: "15", xl: "12.5", lg: "11.5", md: "10", sm: "8.5" }} as="h2">
         {localize(locale, "video")}
       </Heading>
-      <MediaPlayer url={url} />
+      <MediaPlayer url={url} light={light} />
     </Container>
   );
 };
