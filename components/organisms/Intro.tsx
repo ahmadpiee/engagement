@@ -9,7 +9,7 @@ const images = [require("@public/assets/images/photo1.JPG")];
 const Intro: React.FC = () => {
   const { locale } = useRouter();
   return (
-    <Container maxW="7xl" paddingTop={{ base: "20", md: "25", lg: "40" }} paddingLeft={{ base: "7", md: "20", lg: "15" }} paddingRight={{ base: "7", md: "20", lg: "15" }} paddingBottom={{ base: "20" }} id="intro">
+    <Container maxW="7xl" paddingTop={{ base: "20", md: "25", lg: "40" }} paddingLeft={{ base: "7", md: "20", lg: "15" }} paddingRight={{ base: "7", md: "20", lg: "15" }} id="intro">
       <Grid style={{ justifyContent: "center", alignItems: "center" }} h="min-content" w="full" templateRows="repeat(3, 1fr)" templateColumns="repeat(8, 1fr)" gap={4} mb="4">
         <GridItem style={{ borderRadius: "40px", overflow: "hidden" }} rowSpan={3} colSpan={{ base: 8, md: 3 }} w="full" textAlign={{ base: "center", md: "left" }}>
           <Image objectFit="cover" loading="lazy" alt="photo" src={images[0]} />
