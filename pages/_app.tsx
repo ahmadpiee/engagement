@@ -24,36 +24,60 @@ const DisableConsole = () => {
 };
 
 function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
-  const url = `https://sofyan-muti.vercel.app${router.route}` || `https://localhost:3000${router.route}`;
+  const url = `https://muti.asof.dev${router.route}`;
   const patternAdmin = new RegExp(/\/admin\/.*/g);
 
   return (
-    <ChakraProvider theme={theme}>
-      <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-      </Head>
-      <DefaultSeo
-        titleTemplate="%s - Sofyan & Muti"
-        openGraph={{
-          type: "website",
-          locale: "id_ID",
-          url,
-          description: "The personal website for Ahmad Sofyan, NextJs",
-          site_name: "Sofyan & Muti | sofyan-muti.vercel.app",
-          images: [],
-        }}
-        canonical={url}
-      />
-      {patternAdmin.test(router.pathname) === true ? <HeaderAdmin /> : <Header />}
-      <div style={{ overflow: "hidden", minHeight: "100vh" }}>
-        <AnimatePresence exitBeforeEnter>
-          <Component {...pageProps} key={DisableConsole()} />
-        </AnimatePresence>
-        <ScrollToTop />
-      </div>
-      <Chat />
-      <Footer />
-    </ChakraProvider>
+    <>
+      <ChakraProvider theme={theme}>
+        <Head>
+          <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        </Head>
+        <DefaultSeo
+          title="Sofyan & Muti"
+          description="My Personal Website for me and her"
+          canonical={url}
+          openGraph={{
+            type: "website",
+            locale: "id_ID",
+            url: url,
+            site_name: "SiteName",
+            description: "Open Graph Description",
+            title: "sofyan dan muti",
+            images: [
+              {
+                url: "https://www.example.ie/og-image-01.jpg",
+                width: 512,
+                height: 512,
+                alt: "muti.asoff.dev logo",
+                type: "image/png",
+              },
+              {
+                url: "https://www.example.ie/og-image-02.jpg",
+                width: 512,
+                height: 512,
+                alt: "muti.asoff.dev logo",
+                type: "image/png",
+              },
+            ],
+          }}
+          twitter={{
+            handle: "@ahmadpiee",
+            site: "muti.asof.dev",
+            cardType: "My Personal Website",
+          }}
+        />
+        {patternAdmin.test(router.pathname) === true ? <HeaderAdmin /> : <Header />}
+        <div style={{ overflow: "hidden", minHeight: "100vh" }}>
+          <AnimatePresence mode="wait">
+            <Component {...pageProps} key={DisableConsole()} />
+          </AnimatePresence>
+          <ScrollToTop />
+        </div>
+        <Chat />
+        <Footer />
+      </ChakraProvider>
+    </>
   );
 }
 

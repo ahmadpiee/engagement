@@ -1,5 +1,5 @@
 module.exports = {
-  siteUrl: "https://muti.asof.dev" || "http://localhost:3000",
+  siteUrl: "https://muti.asof.dev",
   changefreq: "daily",
   priority: 0.7,
   sitemapSize: 5000,

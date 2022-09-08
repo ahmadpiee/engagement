@@ -1,12 +1,13 @@
 {
-  "name": "Next.JS Progressive Web App",
-  "short_name": "Next PWA",
   "theme_color": "#ffffff",
   "background_color": "#004740",
-  "display": "fullscreen",
   "orientation": "portrait",
+  "display": "standalone",
   "scope": "/",
   "start_url": "/",
+  "name": "muti.asof.dev",
+  "short_name": "Engagement PWA",
+  "description": "My Website for me and her",
   "icons": [
     {
       "src": "icons/icon-72x72.png",
@@ -48,6 +49,5 @@
       "sizes": "512x512",
       "type": "image/png"
     }
-  ],
-  "splash_pages": true
+  ]
 }
