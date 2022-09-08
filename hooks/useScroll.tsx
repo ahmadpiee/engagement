@@ -1,7 +1,7 @@
 import { useInView } from "react-intersection-observer";
 import { useAnimation } from "framer-motion";
 
-export default function useScroll() {
+const useScroll = () => {
   const controls = useAnimation();
   const [element, view] = useInView({ threshold: 0.5 });
 
@@ -12,4 +12,6 @@ export default function useScroll() {
   }
 
   return { element, controls };
-}
+};
+
+export default useScroll;

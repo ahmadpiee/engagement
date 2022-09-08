@@ -16,39 +16,55 @@ import { FreeMode, Pagination } from "swiper";
 import { fadeInUp, photoAnimation, titleAnimation } from "@components/atoms/animations";
 import { motion } from "framer-motion";
 import useScroll from "@hooks/useScroll";
+import dynamic from "next/dynamic";
+
+const SkeletonCollage = dynamic(() => import("@components/molecules/skeleton/landing-page/SkeletonCollage"));
 
 const Gallery: React.FC = () => {
   const { locale } = useRouter();
   const { controls, element } = useScroll();
+  const [loading, setLoading] = React.useState<Boolean>(true);
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  }, []);
 
   return (
-    <Container marginTop={{ base: "10" }} minW="100%" id="gallery">
-      <motion.div variants={fadeInUp} ref={element} animate={controls} initial="hidden">
-        <motion.div variants={titleAnimation}>
-          <Heading marginBottom={{ base: "15", xl: "12.5", lg: "11.5", md: "10", sm: "8.5" }} as="h2">
-            {localize(locale, "gallery")}
-          </Heading>
-        </motion.div>
-        <motion.div variants={photoAnimation}>
-          <Swiper
-            slidesPerView={3}
-            spaceBetween={30}
-            freeMode={true}
-            pagination={{
-              clickable: true,
-            }}
-            modules={[FreeMode, Pagination]}
-            className="mySwiper"
-          >
-            {Collages.map((data, i) => (
-              <SwiperSlide key={i}>
-                <Image objectFit="cover" placeholder="blur" loading="lazy" src={data.image} alt={data.alt} />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </motion.div>
-      </motion.div>
-    </Container>
+    <>
+      {loading ? (
+        <SkeletonCollage />
+      ) : (
+        <Container marginTop={{ base: "10" }} minW="100%" id="gallery">
+          <motion.div variants={fadeInUp} ref={element} animate={controls} initial="hidden">
+            <motion.div variants={titleAnimation}>
+              <Heading marginBottom={{ base: "15", xl: "12.5", lg: "11.5", md: "10", sm: "8.5" }} as="h2">
+                {localize(locale, "gallery")}
+              </Heading>
+            </motion.div>
+            <motion.div variants={photoAnimation}>
+              <Swiper
+                slidesPerView={3}
+                spaceBetween={30}
+                freeMode={true}
+                pagination={{
+                  clickable: true,
+                }}
+                modules={[FreeMode, Pagination]}
+                className="mySwiper"
+              >
+                {Collages.map((data, i) => (
+                  <SwiperSlide key={i}>
+                    <Image objectFit="cover" placeholder="blur" loading="lazy" src={data.image} alt={data.alt} />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </motion.div>
+          </motion.div>
+        </Container>
+      )}
+    </>
   );
 };
 

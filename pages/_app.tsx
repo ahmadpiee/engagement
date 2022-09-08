@@ -44,7 +44,7 @@ function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
         canonical={url}
       />
       {patternAdmin.test(router.pathname) === true ? <HeaderAdmin /> : <Header />}
-      <div style={{ overflow: "hidden" }}>
+      <div style={{ overflow: "hidden", minHeight: "100vh" }}>
         <AnimatePresence exitBeforeEnter>
           <Component {...pageProps} key={DisableConsole()} />
         </AnimatePresence>
