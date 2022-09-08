@@ -18,9 +18,9 @@ const id = {
   intro: "Intro",
   video: "Dokumentasi",
   //
-  i: "i",
-  c: "k",
-  d: "d",
+  i: "I",
+  c: "K",
+  d: "D",
 };
 
 export default id;

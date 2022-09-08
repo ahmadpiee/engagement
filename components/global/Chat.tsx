@@ -3,7 +3,7 @@ import Script from "next/script";
 
 const ChatID = process.env.NEXT_PUBLIC_CHAT_ID;
 
-const Crips: React.FC = () => {
+const Chat: React.FC = () => {
   return (
     <Script
       id="crisp-widget"
@@ -24,4 +24,4 @@ const Crips: React.FC = () => {
   );
 };
 
-export default Crips;
+export default Chat;

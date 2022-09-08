@@ -20,7 +20,7 @@ const Video: React.FC = () => {
     <Container marginTop={{ base: "10" }} minW="100%" id="video">
       <motion.div ref={element} initial="hidden" animate={controls} variants={fadeInUp}>
         <motion.div variants={titleAnimation}>
-          <Heading marginBottom={{ base: "15", xl: "12.5", lg: "11.5", md: "10", sm: "8.5" }} as="h2">
+          <Heading marginBottom={{ base: "15", xl: "12.5", lg: "11.5", md: "10", sm: "8.5" }} size="md">
             {localize(locale, "video")}
           </Heading>
         </motion.div>

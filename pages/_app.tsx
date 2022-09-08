@@ -4,18 +4,18 @@ import "@fontsource/noto-naskh-arabic";
 import React from "react";
 import Head from "next/head";
 import dynamic from "next/dynamic";
+import { AppProps } from "next/app";
+import { DefaultSeo } from "next-seo";
 import { ChakraProvider } from "@chakra-ui/react";
+import { AnimatePresence } from "framer-motion";
 import { isNotDevelopment } from "@utils/helpers/process-env";
 import theme from "@components/global/Theme";
-import { AppProps } from "next/app";
-import { AnimatePresence } from "framer-motion";
-import { DefaultSeo } from "next-seo";
 
 const Header = dynamic(() => import("@components/global/Header"), { ssr: false });
 const Footer = dynamic(() => import("@components/global/Footer"), { ssr: false });
 const HeaderAdmin = dynamic(() => import("@components/global/HeaderAdmin"), { ssr: false });
 const ScrollToTop = dynamic(() => import("@components/atoms/scroll-to-top"), { ssr: false });
-const Crips = dynamic(() => import("@components/global/Crips"), { ssr: false });
+const Chat = dynamic(() => import("@components/global/Chat"), { ssr: false });
 
 const DisableConsole = () => {
   if (isNotDevelopment) {
@@ -51,7 +51,7 @@ function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
         </AnimatePresence>
         <ScrollToTop />
       </div>
-      <Crips />
+      <Chat />
       <Footer />
     </ChakraProvider>
   );

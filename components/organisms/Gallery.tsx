@@ -34,7 +34,7 @@ const Gallery: React.FC = () => {
         <Container marginTop={{ base: "10" }} minW="100%" id="gallery">
           <motion.div variants={fadeInUp} ref={element} animate={controls} initial="hidden">
             <motion.div variants={titleAnimation}>
-              <Heading marginBottom={{ base: "15", xl: "12.5", lg: "11.5", md: "10", sm: "8.5" }} as="h2">
+              <Heading marginBottom={{ base: "15", xl: "12.5", lg: "11.5", md: "10", sm: "8.5" }} size="md">
                 {localize(locale, "gallery")}
               </Heading>
             </motion.div>

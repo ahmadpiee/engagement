@@ -18,7 +18,7 @@ const SkeletonIntro: React.FC = () => {
   const { locale } = useRouter();
   return (
     <Container marginTop={{ base: "10" }} minW="100%" id="gallery">
-      <Skeleton mb="10" h="50px" w="120px">
+      <Skeleton mb="10" h="1rem" w="3rem">
         {localize(locale, "gallery")}
       </Skeleton>
       <Swiper

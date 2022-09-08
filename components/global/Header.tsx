@@ -18,6 +18,13 @@ const Header: React.FC = (props) => {
   const router = useRouter();
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [scrollActive, setScrollActive] = React.useState<Boolean>(false);
+
+  React.useEffect(() => {
+    window.addEventListener("scroll", () => {
+      setScrollActive(window.scrollY > 20);
+    });
+  }, []);
 
   return (
     <>
@@ -43,17 +50,17 @@ const Header: React.FC = (props) => {
         <Box display={{ base: "none", md: "none", lg: "none", xl: "flex" }} mt={{ base: 4, md: 0 }}>
           <LinkScroll activeClass="active" to="intro" spy={true} smooth={true} duration={1000} offset={50}>
             <MenuItemsButton>
-              <Text fontSize="lg">{localize(locale, "intro")}</Text>
+              <Text fontSize="md">{localize(locale, "intro")}</Text>
             </MenuItemsButton>
           </LinkScroll>
           <LinkScroll activeClass="active" to="gallery" spy={true} smooth={true} duration={1000} offset={50}>
             <MenuItemsButton>
-              <Text fontSize="lg">{localize(locale, "gallery")}</Text>
+              <Text fontSize="md">{localize(locale, "gallery")}</Text>
             </MenuItemsButton>
           </LinkScroll>
           <LinkScroll activeClass="active" to="video" spy={true} smooth={true} duration={1000} offset={50}>
             <MenuItemsButton>
-              <Text fontSize="lg">{localize(locale, "video")}</Text>
+              <Text fontSize="md">{localize(locale, "video")}</Text>
             </MenuItemsButton>
           </LinkScroll>
         </Box>
@@ -113,7 +120,7 @@ const Header: React.FC = (props) => {
         <ModalOverlay />
         <ModalContent>
           <ModalBody>
-            <Flex align="center" width="full" wrap="wrap">
+            <Flex align="center" w="full" wrap="wrap" h="full">
               <LinkScroll activeClass="active" to="intro" spy={true} smooth={true} duration={1000}>
                 <Box as="button" textAlign="left" w="full" display="flex" h="min-content" paddingY="1" justifyContent="center">
                   <Text fontSize="xs" paddingX="1" fontWeight="bold">

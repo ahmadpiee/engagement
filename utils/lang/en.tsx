@@ -17,9 +17,9 @@ const en = {
   intro: "Intro",
   video: "Documentaion",
   //
-  i: "i",
-  c: "c",
-  d: "d",
+  i: "I",
+  c: "C",
+  d: "D",
 };
 
 export default en;
