@@ -122,7 +122,7 @@ const Header: React.FC = (props) => {
                 </Box>
               </LinkScroll>
               <Spacer />
-              <Kbd marginRight="1">I</Kbd>
+              <Kbd marginRight="1">{localize(locale, "i")}</Kbd>
               <Divider />
               {/*  */}
               <LinkScroll activeClass="active" to="gallery" spy={true} smooth={true} duration={1000}>
@@ -133,7 +133,7 @@ const Header: React.FC = (props) => {
                 </Box>
               </LinkScroll>
               <Spacer />
-              <Kbd marginRight="1">C</Kbd>
+              <Kbd marginRight="1">{localize(locale, "c")}</Kbd>
               <Divider />
               {/*  */}
               <LinkScroll activeClass="active" to="video" spy={true} smooth={true} duration={1000}>
@@ -144,7 +144,7 @@ const Header: React.FC = (props) => {
                 </Box>
               </LinkScroll>
               <Spacer />
-              <Kbd marginRight="1">V</Kbd>
+              <Kbd marginRight="1">{localize(locale, "i")}</Kbd>
             </Flex>
           </ModalBody>
         </ModalContent>

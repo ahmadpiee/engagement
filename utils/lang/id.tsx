@@ -13,10 +13,14 @@ const id = {
   basmallah: "بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ",
   arRum:
     "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir. (AR-RUM:21)",
-  footer: "Dibuat Dengan Tulus Oleh ❤️ & Coffee",
+  footer: "Dibuat Tulus Dengan ❤️ & Coffee",
   gallery: "Kolase",
   intro: "Intro",
   video: "Dokumentasi",
+  //
+  i: "i",
+  c: "k",
+  d: "d",
 };
 
 export default id;
