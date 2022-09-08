@@ -15,6 +15,7 @@ const Header = dynamic(() => import("@components/global/Header"), { ssr: false }
 const Footer = dynamic(() => import("@components/global/Footer"), { ssr: false });
 const HeaderAdmin = dynamic(() => import("@components/global/HeaderAdmin"), { ssr: false });
 const ScrollToTop = dynamic(() => import("@components/atoms/scroll-to-top"), { ssr: false });
+const Crips = dynamic(() => import("@components/global/Crips"), { ssr: false });
 
 const DisableConsole = () => {
   if (isNotDevelopment) {
@@ -50,6 +51,7 @@ function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
         </AnimatePresence>
         <ScrollToTop />
       </div>
+      <Crips />
       <Footer />
     </ChakraProvider>
   );
