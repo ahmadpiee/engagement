@@ -15,7 +15,7 @@ module.exports = WithPWA({
   reactStrictMode: true,
   i18n: {
     locales: ["id", "en"],
-    defaultLocale: "en",
+    defaultLocale: "id",
     localeDetection: false,
   },
   images: {

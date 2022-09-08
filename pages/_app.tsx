@@ -1,16 +1,20 @@
+import "@fontsource/lato";
+import "@fontsource/noto-naskh-arabic";
+//
 import React from "react";
 import Head from "next/head";
 import dynamic from "next/dynamic";
 import { ChakraProvider } from "@chakra-ui/react";
-import { useRouter } from "next/router";
 import { isNotDevelopment } from "@utils/helpers/process-env";
 import theme from "@components/global/Theme";
 import { AppProps } from "next/app";
+import { AnimatePresence } from "framer-motion";
+import { DefaultSeo } from "next-seo";
 
-const Header = dynamic(() => import("@components/global/Header"));
-const Footer = dynamic(() => import("@components/global/Footer"));
-const HeaderAdmin = dynamic(() => import("@components/global/HeaderAdmin"));
-const ScrollToTop = dynamic(() => import("@components/atoms/scroll-to-top"));
+const Header = dynamic(() => import("@components/global/Header"), { ssr: false });
+const Footer = dynamic(() => import("@components/global/Footer"), { ssr: false });
+const HeaderAdmin = dynamic(() => import("@components/global/HeaderAdmin"), { ssr: false });
+const ScrollToTop = dynamic(() => import("@components/atoms/scroll-to-top"), { ssr: false });
 
 const DisableConsole = () => {
   if (isNotDevelopment) {
@@ -18,8 +22,8 @@ const DisableConsole = () => {
   }
 };
 
-function MyApp({ Component, pageProps }: AppProps) {
-  const router = useRouter();
+function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
+  const url = `https://sofyan-muti.vercel.app${router.route}` || `https://localhost:3000${router.route}`;
   const patternAdmin = new RegExp(/\/admin\/.*/g);
 
   return (
@@ -27,9 +31,25 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
       </Head>
+      <DefaultSeo
+        titleTemplate="%s - Sofyan & Muti"
+        openGraph={{
+          type: "website",
+          locale: "id_ID",
+          url,
+          description: "The personal website for Ahmad Sofyan, NextJs",
+          site_name: "Sofyan & Muti | sofyan-muti.vercel.app",
+          images: [],
+        }}
+        canonical={url}
+      />
       {patternAdmin.test(router.pathname) === true ? <HeaderAdmin /> : <Header />}
-      <Component {...pageProps} key={DisableConsole()} />
-      <ScrollToTop />
+      <div style={{ overflow: "hidden" }}>
+        <AnimatePresence exitBeforeEnter>
+          <Component {...pageProps} key={DisableConsole()} />
+        </AnimatePresence>
+        <ScrollToTop />
+      </div>
       <Footer />
     </ChakraProvider>
   );

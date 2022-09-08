@@ -1,9 +1,29 @@
 import React from "react";
 import Head from "next/head";
-import { PageAnimation } from "@components/atoms/animations";
-import { motion } from "framer-motion";
+import { pageAnimation } from "@components/atoms/animations/index";
+import { useRouter } from "next/router";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
-const Layout = ({ children, className = null, title, description, keywords }) => {
+interface LayoutProps {
+  children?: any;
+  className?: string;
+  title?: string;
+  description?: string;
+  keywords?: string;
+}
+
+const Layout: React.FC<LayoutProps> = ({ children, className, title, description, keywords }) => {
+  const constrols = useAnimation();
+  const [element, view] = useInView({ threshold: 0.5 });
+  const router = useRouter();
+
+  if (view) {
+    constrols.start("show");
+  } else {
+    constrols.start("hidden");
+  }
+
   return (
     <div className={className}>
       <Head>
@@ -11,8 +31,8 @@ const Layout = ({ children, className = null, title, description, keywords }) =>
         <meta name="description" content={description} />
         <meta name="keywords" content={keywords} />
       </Head>
-      <motion.div variants={PageAnimation} initial="hidden" animate="show">
-        <main>{children}</main>
+      <motion.div ref={element} key={router.route} exit="exit" variants={pageAnimation} initial="hidden" animate="show">
+        {children}
       </motion.div>
     </div>
   );

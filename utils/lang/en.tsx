@@ -11,6 +11,7 @@ const en = {
   prolouge:
     "dear my love, I think i'm the only one who know exactly how big this feeling for you, i know i'm not perfect, but i hope you have someone who always back you up and protect you either you happy or sad, it doesn't mean you need to, it means i don't want you face it alone, because this feeling just can't stop falling in love with you, and let me be your man and part of your journey, will you?",
   footer: "Sincerely Made By ❤️ & Coffee",
+  basmallah: "بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ",
   arRum: "And of His signs is that He created for you from yourselves mates that you may find tranquillity in them; and He placed between you affection and mercy. Indeed in that are signs for a people who give thought. (AR-RUM:21)",
   gallery: "Collage",
   intro: "Intro",

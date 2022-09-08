@@ -21,14 +21,26 @@ const Header: React.FC = (props) => {
 
   return (
     <>
-      <Flex as="header" align="center" position="fixed" zIndex="10" padding="1.5rem" width="full" bg={colorMode === "light" ? "white" : "gray.800"} color={colorMode === "light" ? "black" : "white"} {...props}>
+      <Flex
+        as="header"
+        align="center"
+        position="fixed"
+        zIndex="100"
+        padding={{ base: "1rem 0" }}
+        paddingLeft={{ base: "1rem", xl: "16rem", lg: "12rem", md: "8rem", sm: "2rem" }}
+        paddingRight={{ base: "1rem", xl: "16rem", lg: "12rem", md: "8rem", sm: "2rem" }}
+        width="full"
+        bg={colorMode === "light" ? "white" : "gray.800"}
+        color={colorMode === "light" ? "black" : "white"}
+        {...props}
+      >
         <Flex align="center" mr={5}>
           <Heading as="h1" size="md">
             <Link href="/">{localize(locale, "leftMenu")}</Link>
           </Heading>
         </Flex>
         <Spacer />
-        <Box display={{ base: "none", md: "flex" }} mt={{ base: 4, md: 0 }}>
+        <Box display={{ base: "none", md: "none", lg: "none", xl: "flex" }} mt={{ base: 4, md: 0 }}>
           <LinkScroll activeClass="active" to="intro" spy={true} smooth={true} duration={1000} offset={50}>
             <MenuItemsButton>
               <Text fontSize="lg">{localize(locale, "intro")}</Text>
@@ -46,17 +58,16 @@ const Header: React.FC = (props) => {
           </LinkScroll>
         </Box>
         <Spacer />
+        {/* mode */}
         <Box display={{ base: "none", md: "flex" }} mt={{ base: 4, md: 0 }} alignContent="center">
           <IconButton size="xs" bg="transparent" icon={colorMode === "light" ? <BiMoon size={25} /> : <BiSun size={25} />} onClick={toggleColorMode} aria-label="button" />
         </Box>
-
-        {/* mode */}
         <Box display={{ base: "block", md: "none", lg: "none" }}>
           <IconButton size="xs" bg="transparent" icon={colorMode === "light" ? <BiMoon size={25} /> : <BiSun size={25} />} onClick={toggleColorMode} aria-label="button" />
         </Box>
 
         {/* flag */}
-        <Box style={{ marginLeft: 10 }}>
+        <Box style={{ marginLeft: 10, marginRight: 10 }}>
           {router.locale == "en" ? (
             <Link
               href={{
@@ -90,7 +101,7 @@ const Header: React.FC = (props) => {
           ) : null}
         </Box>
         {/*  */}
-        <Box style={{ marginLeft: 10 }} display={{ base: "block", md: "none", lg: "none" }}>
+        <Box display={{ base: "block", xl: "none", lg: "flex" }}>
           <Button size="xs" bg="transparent" onClick={onOpen}>
             <GiHamburgerMenu size={18} />
           </Button>

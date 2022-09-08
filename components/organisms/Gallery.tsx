@@ -1,11 +1,3 @@
-import React from "react";
-import { Container, Heading } from "@chakra-ui/react";
-import Image from "next/image";
-import { localize } from "@utils/lib/formatter";
-import { useRouter } from "next/router";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { FreeMode, Pagination } from "swiper";
-
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
@@ -13,8 +5,63 @@ import "swiper/css/bundle";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
+//
+import React from "react";
+import { Container, Heading } from "@chakra-ui/react";
+import Image from "next/image";
+import { localize } from "@utils/lib/formatter";
+import { useRouter } from "next/router";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { FreeMode, Pagination } from "swiper";
+import { fadeInUp, photoAnimation, titleAnimation } from "@components/atoms/animations";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
-const Collages = [
+const Gallery: React.FC = () => {
+  const { locale } = useRouter();
+  const constrols = useAnimation();
+  const [element, view] = useInView({ threshold: 0.5 });
+
+  if (view) {
+    constrols.start("show");
+  } else {
+    constrols.start("hidden");
+  }
+
+  return (
+    <Container marginTop={{ base: "10" }} minW="100%" id="gallery">
+      <motion.div variants={fadeInUp} ref={element} animate={constrols} initial="hidden">
+        <motion.div variants={titleAnimation}>
+          <Heading marginBottom={{ base: "15", xl: "12.5", lg: "11.5", md: "10", sm: "8.5" }} as="h2">
+            {localize(locale, "gallery")}
+          </Heading>
+        </motion.div>
+        <motion.div variants={photoAnimation}>
+          <Swiper
+            slidesPerView={3}
+            spaceBetween={30}
+            freeMode={true}
+            pagination={{
+              clickable: true,
+            }}
+            modules={[FreeMode, Pagination]}
+            className="mySwiper"
+          >
+            {Collages.map((data, i) => (
+              <SwiperSlide key={i}>
+                <Image objectFit="cover" placeholder="blur" loading="lazy" src={data.image} alt={data.alt} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </motion.div>
+      </motion.div>
+    </Container>
+  );
+};
+
+export default Gallery;
+
+export const Collages = [
   {
     image: require("@public/assets/images/1.jpg"),
     title: "",
@@ -56,33 +103,3 @@ const Collages = [
     alt: "9",
   },
 ];
-
-const Gallery: React.FC = () => {
-  const { locale } = useRouter();
-
-  return (
-    <Container marginTop={{ base: "10" }} maxW="7xl" paddingTop={{ base: "7" }} paddingLeft={{ base: "7", md: "20", lg: "15" }} paddingRight={{ base: "7", md: "20", lg: "15" }} id="gallery">
-      <Heading marginBottom={{ base: "15", xl: "12.5", lg: "11.5", md: "10", sm: "8.5" }} as="h2">
-        {localize(locale, "gallery")}
-      </Heading>
-      <Swiper
-        slidesPerView={3}
-        spaceBetween={30}
-        freeMode={true}
-        pagination={{
-          clickable: true,
-        }}
-        modules={[FreeMode, Pagination]}
-        className="mySwiper"
-      >
-        {Collages.map((data, i) => (
-          <SwiperSlide key={i}>
-            <Image objectFit="cover" placeholder="blur" loading="lazy" src={data.image} alt={data.alt} />
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    </Container>
-  );
-};
-
-export default Gallery;

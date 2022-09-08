@@ -6,20 +6,12 @@ const config: ChakraConfig = {
   useSystemColorMode: false,
 };
 
-const breakpoints = {
-  sm: "30em",
-  md: "48em",
-  lg: "62em",
-  xl: "80em",
-  "2xl": "96em",
-};
-
 const theme = extendTheme({
-  breakpoints,
   config,
   fonts: {
     heading: `'Lato', sans-serif`,
     body: `'Lato', sans-serif`,
+    arabic: `'Noto Naskh Arabic', sans-serif`,
   },
   fontSizes: {
     xs: "0.75rem",
