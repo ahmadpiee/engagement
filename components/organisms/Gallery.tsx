@@ -17,19 +17,14 @@ import { fadeInUp, photoAnimation, titleAnimation } from "@components/atoms/anim
 import { motion } from "framer-motion";
 import useScroll from "@hooks/useScroll";
 import dynamic from "next/dynamic";
+import useLoading from "@hooks/useLoading";
 
 const SkeletonCollage = dynamic(() => import("@components/molecules/skeleton/landing-page/SkeletonCollage"));
 
 const Gallery: React.FC = () => {
   const { locale } = useRouter();
   const { controls, element } = useScroll();
-  const [loading, setLoading] = React.useState<Boolean>(true);
-
-  React.useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-  }, []);
+  const { loading } = useLoading();
 
   return (
     <>

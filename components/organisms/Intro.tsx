@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import useScroll from "@hooks/useScroll";
 import Image from "next/image";
 import dynamic from "next/dynamic";
-// import SkeletonIntro from "@components/molecules/skeleton/landing-page/SkeletonIntro";
+import useLoading from "@hooks/useLoading";
 
 const images = [require("@public/assets/images/photo1.JPG")];
 const SkeletonIntro = dynamic(() => import("@components/molecules/skeleton/landing-page/SkeletonIntro"));
@@ -15,13 +15,7 @@ const SkeletonIntro = dynamic(() => import("@components/molecules/skeleton/landi
 const Intro: React.FC = () => {
   const { locale } = useRouter();
   const { controls, element } = useScroll();
-  const [loading, setLoading] = React.useState<Boolean>(true);
-
-  React.useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-  }, []);
+  const { loading } = useLoading();
 
   return (
     <>
