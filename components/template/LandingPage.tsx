@@ -1,9 +1,6 @@
 import React from "react";
 import dynamic from "next/dynamic";
 import { Container } from "@chakra-ui/react";
-import { motion, useAnimation } from "framer-motion";
-import { useInView } from "react-intersection-observer";
-import { fadeInUp } from "@components/atoms/animations";
 
 const Intro = dynamic(() => import("@components/organisms/Intro"));
 const Gallery = dynamic(() => import("@components/organisms/Gallery"));

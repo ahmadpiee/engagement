@@ -4,8 +4,8 @@ import { localize } from "@utils/lib/formatter";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 import { fadeInUp, photoAnimation, titleAnimation } from "@components/atoms/animations";
-import { motion, useAnimation } from "framer-motion";
-import { useInView } from "react-intersection-observer";
+import { motion } from "framer-motion";
+import useScroll from "@hooks/useScroll";
 
 const MediaPlayer = dynamic(() => import("@components/molecules/media-player/MediaPlayer"), { ssr: false });
 
@@ -14,18 +14,11 @@ const light = "https://res.cloudinary.com/tv-masa-kini/image/upload/v1662556413/
 
 const Video: React.FC = () => {
   const { locale } = useRouter();
-  const constrols = useAnimation();
-  const [element, view] = useInView({ threshold: 0.5 });
-
-  if (view) {
-    constrols.start("show");
-  } else {
-    constrols.start("hidden");
-  }
+  const { controls, element } = useScroll();
 
   return (
     <Container marginTop={{ base: "10" }} minW="100%" id="video">
-      <motion.div ref={element} initial="hidden" animate={constrols} variants={fadeInUp}>
+      <motion.div ref={element} initial="hidden" animate={controls} variants={fadeInUp}>
         <motion.div variants={titleAnimation}>
           <Heading marginBottom={{ base: "15", xl: "12.5", lg: "11.5", md: "10", sm: "8.5" }} as="h2">
             {localize(locale, "video")}
