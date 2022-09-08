@@ -1,6 +1,8 @@
 import React from "react";
 import Script from "next/script";
 
+const ChatID = process.env.NEXT_PUBLIC_CHAT_ID;
+
 const Crips: React.FC = () => {
   return (
     <Script
@@ -9,7 +11,7 @@ const Crips: React.FC = () => {
       dangerouslySetInnerHTML={{
         __html: `
       window.$crisp=[];
-      window.CRISP_WEBSITE_ID="32efcf16-b047-4c18-9950-9ccc0e91e03e";
+      window.CRISP_WEBSITE_ID="${ChatID}";
       (function(){
         const d = document;
         const s = d.createElement("script");
@@ -23,7 +25,3 @@ const Crips: React.FC = () => {
 };
 
 export default Crips;
-
-{
-  /* <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="32efcf16-b047-4c18-9950-9ccc0e91e03e";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script> */
-}
