@@ -10,6 +10,12 @@
   "description": "My Website for me and her",
   "icons": [
     {
+      "src": "/logo.svg?v=3",
+      "sizes": "512x512",
+      "type": "image/svg",
+      "purpose": "maskable"
+    },
+    {
       "src": "icons/icon-72x72.png",
       "sizes": "72x72",
       "type": "image/png"
