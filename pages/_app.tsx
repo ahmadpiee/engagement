@@ -1,76 +1,104 @@
-import "@fontsource/lato";
-import "@fontsource/noto-naskh-arabic";
+import '@fontsource/lato'
+import '@fontsource/noto-naskh-arabic'
+import '@fontsource/sora'
 //
-import React from "react";
-import Head from "next/head";
-import dynamic from "next/dynamic";
-import { AppProps } from "next/app";
-import { DefaultSeo } from "next-seo";
-import { ChakraProvider } from "@chakra-ui/react";
-import { AnimatePresence } from "framer-motion";
-import { isNotDevelopment } from "@utils/helpers/process-env";
-import theme from "@components/global/Theme";
+import React from 'react'
+import Head from 'next/head'
+import dynamic from 'next/dynamic'
+import { AppProps } from 'next/app'
+import { DefaultSeo } from 'next-seo'
+import { ChakraProvider } from '@chakra-ui/react'
+import { AnimatePresence } from 'framer-motion'
+import { isNotDevelopment } from '@utils/helpers/process-env'
+import theme from '@components/global/Theme'
+import useLoading from '@hooks/useLoading'
+import { ProgressIndetermine } from '@components/atoms/progress-indicators'
 
-const Header = dynamic(() => import("@components/global/Header"), { ssr: false });
-const Footer = dynamic(() => import("@components/global/Footer"), { ssr: false });
-const HeaderAdmin = dynamic(() => import("@components/global/HeaderAdmin"), { ssr: false });
-const ScrollToTop = dynamic(() => import("@components/atoms/scroll-to-top"), { ssr: false });
-const Chat = dynamic(() => import("@components/global/Chat"), { ssr: false });
+const Header = dynamic(() => import('@components/global/Header'), {
+  ssr: false,
+})
+const Footer = dynamic(() => import('@components/global/Footer'), {
+  ssr: false,
+})
+const HeaderAdmin = dynamic(() => import('@components/global/HeaderAdmin'), {
+  ssr: false,
+})
+const ScrollToTop = dynamic(() => import('@components/atoms/scroll-to-top'), {
+  ssr: false,
+})
+const Chat = dynamic(() => import('@components/global/Chat'), { ssr: false })
 
 const DisableConsole = () => {
   if (isNotDevelopment) {
-    return (console.log = function () {});
+    return (console.log = function () {})
   }
-};
+}
 
 function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
-  const url = `https://muti.asof.dev${router.route}`;
-  const patternAdmin = new RegExp(/\/admin\/.*/g);
+  const url = `https://muti.asof.dev${router.route}`
+  const patternAdmin = new RegExp(/\/admin\/.*/g)
+  const { loading } = useLoading()
+
+  const RenderSeo = () => (
+    <DefaultSeo
+      title="Sofyan & Muti"
+      description="My Personal Website for me and her"
+      canonical={url}
+      openGraph={{
+        type: 'website',
+        locale: 'id_ID',
+        url: url,
+        site_name: 'SiteName',
+        description: 'Open Graph Description',
+        title: 'sofyan dan muti',
+        images: [
+          {
+            url: 'https://www.example.ie/og-image-01.jpg',
+            width: 512,
+            height: 512,
+            alt: 'muti.asoff.dev logo',
+            type: 'image/png',
+          },
+          {
+            url: 'https://www.example.ie/og-image-02.jpg',
+            width: 512,
+            height: 512,
+            alt: 'muti.asoff.dev logo',
+            type: 'image/png',
+          },
+        ],
+      }}
+      twitter={{
+        handle: '@ahmadpiee',
+        site: 'muti.asof.dev',
+        cardType: 'My Personal Website',
+      }}
+    />
+  )
 
   return (
     <>
       <ChakraProvider theme={theme}>
+        <RenderSeo />
+        {patternAdmin.test(router.pathname) === true ? (
+          <HeaderAdmin />
+        ) : (
+          <Header />
+        )}
         <Head>
-          <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+          />
         </Head>
-        <DefaultSeo
-          title="Sofyan & Muti"
-          description="My Personal Website for me and her"
-          canonical={url}
-          openGraph={{
-            type: "website",
-            locale: "id_ID",
-            url: url,
-            site_name: "SiteName",
-            description: "Open Graph Description",
-            title: "sofyan dan muti",
-            images: [
-              {
-                url: "https://www.example.ie/og-image-01.jpg",
-                width: 512,
-                height: 512,
-                alt: "muti.asoff.dev logo",
-                type: "image/png",
-              },
-              {
-                url: "https://www.example.ie/og-image-02.jpg",
-                width: 512,
-                height: 512,
-                alt: "muti.asoff.dev logo",
-                type: "image/png",
-              },
-            ],
-          }}
-          twitter={{
-            handle: "@ahmadpiee",
-            site: "muti.asof.dev",
-            cardType: "My Personal Website",
-          }}
-        />
-        {patternAdmin.test(router.pathname) === true ? <HeaderAdmin /> : <Header />}
-        <div style={{ overflow: "hidden", minHeight: "100vh" }}>
+
+        <div style={{ overflow: 'hidden', minHeight: '100vh' }}>
           <AnimatePresence mode="wait">
-            <Component {...pageProps} key={DisableConsole()} />
+            {loading ? (
+              <ProgressIndetermine />
+            ) : (
+              <Component {...pageProps} key={DisableConsole()} />
+            )}
           </AnimatePresence>
           <ScrollToTop />
         </div>
@@ -78,7 +106,7 @@ function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
         <Footer />
       </ChakraProvider>
     </>
-  );
+  )
 }
 
-export default MyApp;
+export default MyApp

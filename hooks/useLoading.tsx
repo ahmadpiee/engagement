@@ -1,14 +1,15 @@
-import React from "react";
+import React from 'react'
 
 const useLoading = () => {
-  const [loading, setLoading] = React.useState<Boolean>(true);
+  const [loading, setLoading] = React.useState<Boolean>(true)
+
   React.useEffect(() => {
     setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-  }, []);
+      setLoading(false)
+    }, 1500)
+  }, [])
 
-  return { loading, setLoading };
-};
+  return { loading, setLoading }
+}
 
-export default useLoading;
+export default useLoading

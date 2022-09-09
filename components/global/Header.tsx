@@ -1,81 +1,237 @@
-import React from "react";
-import Link from "next/link";
-import dynamic from "next/dynamic";
-import { Box, Heading, Flex, Text, useColorMode, IconButton, Button, useDisclosure, Divider, Spacer, Kbd, Modal, ModalOverlay, ModalContent, ModalBody } from "@chakra-ui/react";
-import { Link as LinkScroll } from "react-scroll";
-import { BiMoon, BiSun } from "react-icons/bi";
-import { GiHamburgerMenu } from "react-icons/gi";
-import { localize } from "@utils/lib/formatter";
-import { useRouter } from "next/router";
-import Image from "next/image";
-import IdFlag from "@public/assets/images/id.svg";
-import EnFlag from "@public/assets/images/en.svg";
+import React from 'react'
+import Link from 'next/link'
+import dynamic from 'next/dynamic'
+import {
+  Box,
+  Heading,
+  Flex,
+  Text,
+  useColorMode,
+  IconButton,
+  useDisclosure,
+  Divider,
+  Spacer,
+  Kbd,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalBody,
+} from '@chakra-ui/react'
+import { Link as LinkScroll } from 'react-scroll'
+import { BiMoon, BiSun } from 'react-icons/bi'
+import { GiHamburgerMenu } from 'react-icons/gi'
+import { localize } from '@utils/lib/formatter'
+import { useRouter } from 'next/router'
+import Image from 'next/image'
+import IdFlag from '@public/assets/images/id.svg'
+import EnFlag from '@public/assets/images/en.svg'
+import { colors } from './Theme'
 
-const MenuItemsButton = dynamic(() => import("@components/atoms/buttons/MenuItemsButton"));
+const MenuItemsButton = dynamic(
+  () => import('@components/atoms/buttons/MenuItemsButton'),
+)
 
-const Header: React.FC = (props) => {
-  const { locale } = useRouter();
-  const router = useRouter();
-  const { colorMode, toggleColorMode } = useColorMode();
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const [scrollActive, setScrollActive] = React.useState<Boolean>(false);
+const Header: React.FC = props => {
+  const { locale } = useRouter()
+  const router = useRouter()
+  const { colorMode, toggleColorMode } = useColorMode()
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
-  React.useEffect(() => {
-    window.addEventListener("scroll", () => {
-      setScrollActive(window.scrollY > 20);
-    });
-  }, []);
+  const RenderModal = () => {
+    return (
+      <Modal
+        isCentered
+        onClose={onClose}
+        isOpen={isOpen}
+        size="xs"
+        motionPreset="slideInBottom"
+      >
+        <ModalOverlay />
+        <ModalContent>
+          <ModalBody>
+            <Flex
+              align="center"
+              w="full"
+              wrap="wrap"
+              h="full"
+              p={{ base: '2', xl: '5', lg: '4', md: '3' }}
+            >
+              <LinkScroll
+                activeClass="active"
+                to="intro"
+                spy={true}
+                smooth={true}
+                duration={1000}
+              >
+                <Box
+                  as="button"
+                  textAlign="left"
+                  w="full"
+                  display="flex"
+                  h="min-content"
+                  paddingY="1"
+                  justifyContent="center"
+                >
+                  <Text fontSize="xs" paddingX="1" fontWeight="bold">
+                    {localize(locale, 'intro')}
+                  </Text>
+                </Box>
+              </LinkScroll>
+              <Spacer />
+              <Kbd>{localize(locale, 'i')}</Kbd>
+              <Divider />
+              {/*  */}
+              <LinkScroll
+                activeClass="active"
+                to="gallery"
+                spy={true}
+                smooth={true}
+                duration={1000}
+              >
+                <Box
+                  as="button"
+                  textAlign="left"
+                  w="full"
+                  display="flex"
+                  h="min-content"
+                  paddingY="1"
+                  justifyContent="center"
+                >
+                  <Text fontSize="xs" paddingX="1" fontWeight="bold">
+                    {localize(locale, 'gallery')}
+                  </Text>
+                </Box>
+              </LinkScroll>
+              <Spacer />
+              <Kbd>{localize(locale, 'c')}</Kbd>
+              <Divider />
+              {/*  */}
+              <LinkScroll
+                activeClass="active"
+                to="video"
+                spy={true}
+                smooth={true}
+                duration={1000}
+              >
+                <Box
+                  as="button"
+                  textAlign="left"
+                  w="full"
+                  display="flex"
+                  h="min-content"
+                  paddingY="1"
+                  justifyContent="center"
+                >
+                  <Text fontSize="xs" paddingX="1" fontWeight="bold">
+                    {localize(locale, 'video')}
+                  </Text>
+                </Box>
+              </LinkScroll>
+              <Spacer />
+              <Kbd>{localize(locale, 'd')}</Kbd>
+              <Divider />
+            </Flex>
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+    )
+  }
 
   return (
     <>
       <Flex
+        {...props}
         as="header"
-        align="center"
         position="fixed"
         zIndex="100"
-        padding={{ base: "1rem 0" }}
-        paddingLeft={{ base: "1rem", xl: "16rem", lg: "12rem", md: "8rem", sm: "2rem" }}
-        paddingRight={{ base: "1rem", xl: "16rem", lg: "12rem", md: "8rem", sm: "2rem" }}
-        width="full"
-        bg={colorMode === "light" ? "white" : "gray.800"}
-        color={colorMode === "light" ? "black" : "white"}
-        {...props}
+        w="full"
+        justifySelf="center"
+        bg={colorMode === 'light' ? colors.whiteGradient : colors.darkGradient}
+        color={colorMode === 'light' ? colors.black.light : colors.pinkGradient}
+        justifyContent="space-evenly"
+        p={{ base: '1rem 0' }}
+        pl={{ base: '1rem', xl: '300', lg: '1rem' }}
+        pr={{ base: '1rem', xl: '300', lg: '1rem' }}
       >
         <Flex align="center" mr={5}>
           <Heading as="h1" size="md">
-            <Link href="/">{localize(locale, "leftMenu")}</Link>
+            <Link href="/">{localize(locale, 'leftMenu')}</Link>
           </Heading>
         </Flex>
         <Spacer />
-        <Box display={{ base: "none", md: "none", lg: "none", xl: "flex" }} mt={{ base: 4, md: 0 }}>
-          <LinkScroll activeClass="active" to="intro" spy={true} smooth={true} duration={1000} offset={50}>
+        <Box
+          display={{ base: 'none', md: 'none', lg: 'none', xl: 'flex' }}
+          mt={{ base: 4, md: 0 }}
+        >
+          <LinkScroll
+            activeClass="active"
+            to="intro"
+            spy={true}
+            smooth={true}
+            duration={1000}
+            offset={50}
+          >
             <MenuItemsButton>
-              <Text fontSize="md">{localize(locale, "intro")}</Text>
+              <Text fontSize="md">{localize(locale, 'intro')}</Text>
             </MenuItemsButton>
           </LinkScroll>
-          <LinkScroll activeClass="active" to="gallery" spy={true} smooth={true} duration={1000} offset={50}>
+          <LinkScroll
+            activeClass="active"
+            to="gallery"
+            spy={true}
+            smooth={true}
+            duration={1000}
+            offset={50}
+          >
             <MenuItemsButton>
-              <Text fontSize="md">{localize(locale, "gallery")}</Text>
+              <Text fontSize="md">{localize(locale, 'gallery')}</Text>
             </MenuItemsButton>
           </LinkScroll>
-          <LinkScroll activeClass="active" to="video" spy={true} smooth={true} duration={1000} offset={50}>
+          <LinkScroll
+            activeClass="active"
+            to="video"
+            spy={true}
+            smooth={true}
+            duration={1000}
+            offset={50}
+          >
             <MenuItemsButton>
-              <Text fontSize="md">{localize(locale, "video")}</Text>
+              <Text fontSize="md">{localize(locale, 'video')}</Text>
             </MenuItemsButton>
           </LinkScroll>
         </Box>
         <Spacer />
         {/* mode */}
-        <Box display={{ base: "none", md: "flex" }} mt={{ base: 4, md: 0 }} alignContent="center">
-          <IconButton size="xs" bg="transparent" icon={colorMode === "light" ? <BiMoon size={25} /> : <BiSun size={25} />} onClick={toggleColorMode} aria-label="button" />
+        <Box
+          display={{ base: 'none', md: 'flex' }}
+          mt={{ base: 4, md: 0 }}
+          alignContent="center"
+        >
+          <IconButton
+            size="xs"
+            bg="transparent"
+            icon={
+              colorMode === 'light' ? <BiMoon size={25} /> : <BiSun size={25} />
+            }
+            onClick={toggleColorMode}
+            aria-label="button"
+          />
         </Box>
-        <Box display={{ base: "block", md: "none", lg: "none" }}>
-          <IconButton size="xs" bg="transparent" icon={colorMode === "light" ? <BiMoon size={25} /> : <BiSun size={25} />} onClick={toggleColorMode} aria-label="button" />
+        <Box display={{ base: 'block', md: 'none', lg: 'none' }}>
+          <IconButton
+            size="xs"
+            bg="transparent"
+            icon={
+              colorMode === 'light' ? <BiMoon size={25} /> : <BiSun size={25} />
+            }
+            onClick={toggleColorMode}
+            aria-label="button"
+          />
         </Box>
 
         {/* flag */}
-        <Box style={{ marginLeft: 10, marginRight: 10 }}>
-          {router.locale == "en" ? (
+        <Box ml={{ base: '3' }} mr={{ base: '3', xl: '0', lg: '3' }}>
+          {router.locale == 'en' ? (
             <Link
               href={{
                 pathname: router.pathname,
@@ -90,7 +246,7 @@ const Header: React.FC = (props) => {
                 </IconButton>
               </a>
             </Link>
-          ) : router.locale == "id" ? (
+          ) : router.locale == 'id' ? (
             <Link
               href={{
                 pathname: router.pathname,
@@ -107,58 +263,22 @@ const Header: React.FC = (props) => {
             </Link>
           ) : null}
         </Box>
-        {/*  */}
-        <Box display={{ base: "block", xl: "none", lg: "flex" }}>
-          <Button size="xs" bg="transparent" onClick={onOpen}>
-            <GiHamburgerMenu size={18} />
-          </Button>
-        </Box>
+        {/* burger button shows when lg */}
+        <IconButton
+          aria-label="button"
+          size="xs"
+          bg="transparent"
+          onClick={onOpen}
+          display={{ base: 'block', xl: 'none', lg: 'block' }}
+          p={0}
+        >
+          <GiHamburgerMenu size={20} />
+        </IconButton>
       </Flex>
-
-      {/* menu modal */}
-      <Modal isCentered onClose={onClose} isOpen={isOpen} size="xs" motionPreset="slideInBottom">
-        <ModalOverlay />
-        <ModalContent>
-          <ModalBody>
-            <Flex align="center" w="full" wrap="wrap" h="full">
-              <LinkScroll activeClass="active" to="intro" spy={true} smooth={true} duration={1000}>
-                <Box as="button" textAlign="left" w="full" display="flex" h="min-content" paddingY="1" justifyContent="center">
-                  <Text fontSize="xs" paddingX="1" fontWeight="bold">
-                    {localize(locale, "intro")}
-                  </Text>
-                </Box>
-              </LinkScroll>
-              <Spacer />
-              <Kbd>{localize(locale, "i")}</Kbd>
-              <Divider />
-              {/*  */}
-              <LinkScroll activeClass="active" to="gallery" spy={true} smooth={true} duration={1000}>
-                <Box as="button" textAlign="left" w="full" display="flex" h="min-content" paddingY="1" justifyContent="center">
-                  <Text fontSize="xs" paddingX="1" fontWeight="bold">
-                    {localize(locale, "gallery")}
-                  </Text>
-                </Box>
-              </LinkScroll>
-              <Spacer />
-              <Kbd>{localize(locale, "c")}</Kbd>
-              <Divider />
-              {/*  */}
-              <LinkScroll activeClass="active" to="video" spy={true} smooth={true} duration={1000}>
-                <Box as="button" textAlign="left" w="full" display="flex" h="min-content" paddingY="1" justifyContent="center">
-                  <Text fontSize="xs" paddingX="1" fontWeight="bold">
-                    {localize(locale, "video")}
-                  </Text>
-                </Box>
-              </LinkScroll>
-              <Spacer />
-              <Kbd>{localize(locale, "d")}</Kbd>
-              <Divider />
-            </Flex>
-          </ModalBody>
-        </ModalContent>
-      </Modal>
+      {/* modal */}
+      <RenderModal />
     </>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

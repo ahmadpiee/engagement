@@ -1,40 +1,50 @@
-import * as React from "react";
-import { FaArrowCircleUp } from "react-icons/fa";
-import { Button } from "@chakra-ui/react";
-import style from "@styles/ScrollToTop.module.css";
-import { localize } from "@utils/lib/formatter";
-import { useRouter } from "next/router";
+import * as React from 'react'
+import { FaArrowCircleUp } from 'react-icons/fa'
+import { Button, ButtonProps } from '@chakra-ui/react'
+import { localize } from '@utils/lib/formatter'
+import { useRouter } from 'next/router'
+import { colors } from '@components/global/Theme'
+import style from '@styles/ScrollToTop.module.css'
 
-const ScrollToTop = () => {
-  const { locale } = useRouter();
-  const [showScroll, setShowScroll] = React.useState<Boolean>(false);
+const ScrollToTop: React.FC<ButtonProps> = props => {
+  const { locale } = useRouter()
+  const [showScroll, setShowScroll] = React.useState<Boolean>(false)
 
   React.useEffect(() => {
-    window.addEventListener("scroll", checkScrollTop);
+    window.addEventListener('scroll', checkScrollTop)
     return function cleanup() {
-      window.removeEventListener("scroll", checkScrollTop);
-    };
-  });
+      window.removeEventListener('scroll', checkScrollTop)
+    }
+  })
 
   const checkScrollTop = () => {
     if (!showScroll && window.pageYOffset > 200) {
-      setShowScroll(true);
+      setShowScroll(true)
     } else if (showScroll && window.pageYOffset <= 200) {
-      setShowScroll(false);
+      setShowScroll(false)
     }
-  };
+  }
 
   const scrollTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 
   return (
     <>
-      <Button rightIcon={<FaArrowCircleUp />} bg="teal" onClick={scrollTop} position="fixed" className={style.scrollToTop} style={{ display: showScroll ? "flex" : "none" }} size="xs">
-        {localize(locale, "goTop")}
+      <Button
+        rightIcon={<FaArrowCircleUp />}
+        bg={colors.darkGradient}
+        onClick={scrollTop}
+        position="fixed"
+        className={style.scrollToTop}
+        style={{ display: showScroll ? 'flex' : 'none' }}
+        size="xs"
+        {...props}
+      >
+        {localize(locale, 'goTop')}
       </Button>
     </>
-  );
-};
+  )
+}
 
-export default ScrollToTop;
+export default ScrollToTop
