@@ -65,8 +65,15 @@ const Header: React.FC = props => {
         pr={{ base: '1rem', xl: '300', lg: '1rem' }}
       >
         <Flex align="center" mr={5}>
-          <Heading as="h1" size="md">
-            <Link href="/">{localize(locale, 'leftMenu')}</Link>
+          <Heading
+            as="h1"
+            size="md"
+            onClick={() => {
+              router.push('/')
+            }}
+            cursor="pointer"
+          >
+            {localize(locale, 'leftMenu')}
           </Heading>
         </Flex>
         <Spacer />
