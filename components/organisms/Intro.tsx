@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Grid, GridItem, Text } from '@chakra-ui/react'
+import { GridItem, Text } from '@chakra-ui/react'
 import {
   Hide,
   titleAnimation,
