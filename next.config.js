@@ -21,14 +21,14 @@ module.exports = WithPWA({
   images: {
     domains: ['jannahfirdaus-image-cloud.s3.ap-southeast-1.amazonaws.com'],
   },
-  webpack(config, options) {
+  webpack(config) {
     config.module.rules.push({
       test: /\.(ogg|mp3|wav|mpe?g|mp4)$/i,
       use: {
         loader: 'file-loader',
         options: {
-          publicPath: '/_next/static/sounds/',
-          outputPath: 'static/sounds/',
+          publicPath: '/_next/static/',
+          outputPath: 'static/',
           name: '[name].[ext]',
           esModule: false,
         },

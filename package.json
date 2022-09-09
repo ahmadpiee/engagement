@@ -2,9 +2,12 @@
   "name": "engagement-website",
   "version": "0.1.0",
   "private": true,
+  "author": "Ahmad Sofyan @ahmadpiee | @ahmadpieeee | ahmadsofyan@asof.dev",
+  "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "next-sitemap",
     "start": "next start",
     "prettier": "prettier -write .",
     "lint": "next lint"
@@ -14,8 +17,6 @@
     "Framer Motion",
     "3D Js"
   ],
-  "author": "Ahmad Sofyan @ahmadpiee | @ahmadpieeee | ahmadsofyan@asof.dev",
-  "license": "MIT",
   "dependencies": {
     "@chakra-ui/react": "^2.3.2",
     "@emotion/react": "^11.10.4",

@@ -1,3 +1,5 @@
+/** @type {import('next-sitemap').IConfig} */
+
 module.exports = {
   siteUrl: 'https://muti.asof.dev',
   changefreq: 'daily',
@@ -10,10 +12,11 @@ module.exports = {
         userAgent: '*',
         allow: ['/'],
       },
-      //   {
-      //     userAgent: "*",
-      //     disallow: ["/admin"],
-      //   },
+      {
+        userAgent: '*',
+        disallow: [''],
+      },
     ],
+    additionalSitemaps: ['https://muti.asof.dev/sitemap-1.xml'],
   },
 }

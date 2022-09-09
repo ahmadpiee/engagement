@@ -27,6 +27,6 @@
       "@dist/*": ["dist/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "next.config.js", "sitemap-config.ts", "components/global/Crips.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "next.config.js"],
   "exclude": ["node_modules"]
 }

@@ -1,0 +1,14 @@
+# *
+User-agent: *
+Allow: /
+
+# *
+User-agent: *
+Disallow: 
+
+# Host
+Host: https://muti.asof.dev
+
+# Sitemaps
+Sitemap: https://muti.asof.dev/sitemap.xml
+Sitemap: https://muti.asof.dev/sitemap-1.xml
