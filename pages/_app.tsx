@@ -11,8 +11,6 @@ import { ChakraProvider } from '@chakra-ui/react'
 import { AnimatePresence } from 'framer-motion'
 import { isNotDevelopment } from '@utils/helpers/process-env'
 import theme from '@components/global/Theme'
-import useLoading from '@hooks/useLoading'
-import { ProgressIndetermine } from '@components/atoms/progress-indicators'
 
 const Header = dynamic(() => import('@components/global/Header'), {
   ssr: false,
@@ -37,7 +35,6 @@ const DisableConsole = () => {
 function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
   const url = `https://muti.asof.dev${router.route}`
   const patternAdmin = new RegExp(/\/admin\/.*/g)
-  const { loading } = useLoading()
 
   const RenderSeo = () => (
     <DefaultSeo
@@ -94,11 +91,7 @@ function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
 
         <div style={{ overflow: 'hidden', minHeight: '100vh' }}>
           <AnimatePresence mode="wait">
-            {loading ? (
-              <ProgressIndetermine />
-            ) : (
-              <Component {...pageProps} key={DisableConsole()} />
-            )}
+            <Component {...pageProps} key={DisableConsole()} />
           </AnimatePresence>
           <ScrollToTop />
         </div>
