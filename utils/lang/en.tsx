@@ -20,10 +20,8 @@ const en = {
   location: 'location',
   page: 'page',
   //
-  i: 'I',
-  c: 'C',
-  d: 'D',
   l: 'L',
+  h: 'H',
 }
 
 export default en

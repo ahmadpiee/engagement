@@ -47,6 +47,20 @@ const Header: React.FC = props => {
       url: '/location',
     },
   ]
+  const DrawerMenus = [
+    {
+      id: 1,
+      name: localize(locale, 'home'),
+      kbd: localize(locale, 'h'),
+      url: '/',
+    },
+    {
+      id: 2,
+      name: localize(locale, 'location'),
+      kbd: localize(locale, 'l'),
+      url: '/location',
+    },
+  ]
 
   return (
     <>
@@ -167,6 +181,7 @@ const Header: React.FC = props => {
           <GiHamburgerMenu size={20} />
         </IconButton>
       </Flex>
+
       {/* drawer */}
       <RenderDrawer
         isOpen={isOpen}
@@ -176,7 +191,7 @@ const Header: React.FC = props => {
         color={colorMode === 'dark' ? colors.white.main : colors.black.main}
         placement="top"
       >
-        {Menus.map(data => (
+        {DrawerMenus.map(data => (
           <Container key={data.id}>
             <Flex w="full" justifyContent="space-between" alignItems="center">
               <Box>

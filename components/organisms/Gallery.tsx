@@ -5,6 +5,7 @@ import 'swiper/css/bundle'
 import 'swiper/css'
 import 'swiper/css/free-mode'
 import 'swiper/css/pagination'
+import 'react-medium-image-zoom/dist/styles.css'
 //
 import React from 'react'
 import Image from 'next/image'
@@ -23,6 +24,7 @@ import dynamic from 'next/dynamic'
 import useLoading from '@hooks/useLoading'
 import { AppHeadingMd } from '@components/molecules/typographies'
 import { SectionContainer } from '@components/molecules/containers'
+import Zoom from 'react-medium-image-zoom'
 
 const SkeletonCollage = dynamic(
   () => import('@components/molecules/skeleton/landing-page/SkeletonCollage'),
@@ -61,13 +63,15 @@ const Gallery: React.FC = () => {
               >
                 {Collages.map((data, i) => (
                   <SwiperSlide key={i}>
-                    <Image
-                      objectFit="cover"
-                      placeholder="blur"
-                      loading="lazy"
-                      src={data.image}
-                      alt={data.alt}
-                    />
+                    <Zoom>
+                      <Image
+                        objectFit="cover"
+                        placeholder="blur"
+                        loading="lazy"
+                        src={data.image}
+                        alt={data.alt}
+                      />
+                    </Zoom>
                   </SwiperSlide>
                 ))}
               </Swiper>

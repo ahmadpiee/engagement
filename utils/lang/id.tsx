@@ -20,10 +20,8 @@ const id = {
   location: 'lokasi',
   page: 'halaman',
   //
-  i: 'I',
-  c: 'K',
-  d: 'D',
   l: 'L',
+  h: 'B',
 }
 
 export default id
