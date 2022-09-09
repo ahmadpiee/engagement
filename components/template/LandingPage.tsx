@@ -11,7 +11,7 @@ const Video = dynamic(() => import('@components/organisms/Video'))
 const LandingPage: React.FC = () => {
   const { locale } = useRouter()
   return (
-    <Layout title={`${localize(locale, 'home')} | asof's`}>
+    <Layout title={localize(locale, 'home')}>
       <Intro />
       <Gallery />
       <Video />

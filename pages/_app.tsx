@@ -12,7 +12,7 @@ import { AnimatePresence } from 'framer-motion'
 import { isNotDevelopment } from '@utils/helpers/process-env'
 import theme from '@components/global/Theme'
 
-const Header = dynamic(() => import('@components/global/Header'), {
+const Header = dynamic(() => import('@components/global/header/index'), {
   ssr: false,
 })
 const Footer = dynamic(() => import('@components/global/Footer'), {
@@ -88,10 +88,9 @@ function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
           />
         </Head>
-
         <div style={{ overflow: 'hidden', minHeight: '100vh' }}>
           <AnimatePresence mode="wait">
-            <Component {...pageProps} key={DisableConsole()} />
+            <Component {...pageProps} key={router.route && DisableConsole()} />
           </AnimatePresence>
           <ScrollToTop />
         </div>

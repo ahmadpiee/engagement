@@ -1,11 +1,10 @@
 import React from 'react'
 import Head from 'next/head'
 import { pageAnimation } from '@components/atoms/animations/index'
-import { useRouter } from 'next/router'
 import { motion } from 'framer-motion'
-import { Box, Container } from '@chakra-ui/react'
+import { Box, BoxProps, Container } from '@chakra-ui/react'
 
-interface LayoutProps {
+interface LayoutProps extends BoxProps {
   children?: any
   className?: string
   title?: string
@@ -13,24 +12,20 @@ interface LayoutProps {
   keywords?: string
 }
 
-const Layout: React.FC<LayoutProps> = ({
-  children,
-  className,
-  title,
-  description,
-  keywords,
-}) => {
-  const router = useRouter()
-
+const Layout: React.FC<LayoutProps> = props => {
+  const { children, title, description, keywords } = props
   return (
-    <Box className={className}>
+    <Box {...props} as="main">
       <Head>
-        <title>{title}</title>
+        <title>{title} - asof&apos;s</title>
         <meta name="description" content={description} />
         <meta name="keywords" content={keywords} />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
       </Head>
       <motion.div
-        key={router.route}
         exit="exit"
         variants={pageAnimation}
         initial="hidden"
