@@ -1,14 +1,16 @@
 import * as React from 'react'
-import { FaArrowCircleUp } from 'react-icons/fa'
-import { Button, ButtonProps } from '@chakra-ui/react'
+import { IoIosArrowDropup } from 'react-icons/io'
+import { Button, ButtonProps, color, Text } from '@chakra-ui/react'
 import { localize } from '@utils/lib/formatter'
 import { useRouter } from 'next/router'
 import { colors } from '@components/global/Theme'
 import style from '@styles/ScrollToTop.module.css'
+import { useColorMode } from '@chakra-ui/react'
 
 const ScrollToTop: React.FC<ButtonProps> = props => {
   const { locale } = useRouter()
   const [showScroll, setShowScroll] = React.useState<Boolean>(false)
+  const { colorMode } = useColorMode()
 
   React.useEffect(() => {
     window.addEventListener('scroll', checkScrollTop)
@@ -32,8 +34,15 @@ const ScrollToTop: React.FC<ButtonProps> = props => {
   return (
     <>
       <Button
-        rightIcon={<FaArrowCircleUp />}
-        bg={colors.darkGradient}
+        rightIcon={
+          <IoIosArrowDropup
+            size={18}
+            color={
+              colorMode === 'light' ? colors.white.main : colors.black.main
+            }
+          />
+        }
+        bg={colorMode === 'light' ? colors.darkGradient : colors.whiteGradient}
         onClick={scrollTop}
         position="fixed"
         className={style.scrollToTop}
@@ -41,7 +50,11 @@ const ScrollToTop: React.FC<ButtonProps> = props => {
         size="xs"
         {...props}
       >
-        {localize(locale, 'goTop')}
+        <Text
+          color={colorMode === 'light' ? colors.white.main : colors.black.main}
+        >
+          {localize(locale, 'goTop')}
+        </Text>
       </Button>
     </>
   )
