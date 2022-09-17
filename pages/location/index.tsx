@@ -1,17 +1,17 @@
 import React from 'react'
+import dynamic from 'next/dynamic'
 import { NextPage } from 'next'
-import { AppHeadingMd } from '@components/molecules/typographies'
-import Layout from '@components/global/Layout'
-import { localize } from '@utils/lib/formatter'
-import { useRouter } from 'next/router'
+import useLoading from '@hooks/useLoading'
+
+const LocationPage = dynamic(() => import('@components/template/LocationPage'))
+const ProgressIndetermine = dynamic(
+  () => import('@components/atoms/progress-indicators/ProgressIndetermine'),
+)
 
 const Location: NextPage = () => {
-  const { locale } = useRouter()
-  return (
-    <Layout id="location" title={`${localize(locale, 'location')}`}>
-      <AppHeadingMd>Location Page</AppHeadingMd>
-    </Layout>
-  )
+  const { loading } = useLoading()
+
+  return <>{loading ? <ProgressIndetermine /> : <LocationPage />}</>
 }
 
 export default Location

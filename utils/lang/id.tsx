@@ -19,6 +19,8 @@ const id = {
   video: 'Dokumentasi',
   location: 'lokasi',
   page: 'halaman',
+  locationInfo: 'lokasi gedung',
+
   //
   l: 'L',
   h: 'B',

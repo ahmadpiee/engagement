@@ -19,6 +19,7 @@ const en = {
   video: 'Documentaion',
   location: 'location',
   page: 'page',
+  locationInfo: `event's location`,
   //
   l: 'L',
   h: 'H',
