@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { IoIosArrowDropup } from 'react-icons/io'
-import { Button, ButtonProps, color, Text } from '@chakra-ui/react'
+import { Button, ButtonProps, Text } from '@chakra-ui/react'
 import { localize } from '@utils/lib/formatter'
 import { useRouter } from 'next/router'
 import { colors } from '@components/global/Theme'
