@@ -1,3 +1,5 @@
+/** @type {import('next').NextConfig} */
+
 const runtimeCaching = require('next-pwa/cache')
 const isProd = process.env.NODE_ENV === 'production'
 
@@ -13,6 +15,7 @@ module.exports = WithPWA({
   },
   poweredByHeader: false,
   reactStrictMode: true,
+  swcMinify: true,
   i18n: {
     locales: ['id', 'en'],
     defaultLocale: 'id',
@@ -60,10 +63,11 @@ module.exports = WithPWA({
             key: 'X-Frame-Options',
             value: 'SAMEORIGIN',
           },
-          // {
-          //     key: 'Permissions-Policy',
-          //     value: 'camera=(https://yourdomain.com), microphone=(https://yourdomain.com), geolocation=(https://yourdomain.com), interest-cohort=(https://yourdomain.com), fullscreen=(https://yourdomain.com)',
-          // }, // change the link to real production domain or leave it empty see: https://www.w3.org/TR/permissions-policy-1/
+          {
+            key: 'Permissions-Policy',
+            value:
+              'camera=(https://muti.asof.dev), microphone=(https://muti.asof.dev), geolocation=(https://muti.asof.dev), interest-cohort=(https://muti.asof.dev), fullscreen=(https://muti.asof.dev)',
+          }, // change the link to real production domain or leave it empty see: https://www.w3.org/TR/permissions-policy-1/
           {
             key: 'X-Content-Type-Options',
             value: 'nosniff',
