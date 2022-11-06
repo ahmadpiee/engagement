@@ -65,7 +65,6 @@ const Gallery: React.FC = () => {
                   <SwiperSlide key={i}>
                     <Zoom>
                       <Image
-                        objectFit="cover"
                         placeholder="blur"
                         loading="lazy"
                         src={data.image}

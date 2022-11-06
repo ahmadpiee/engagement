@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { NextPage } from 'next'
 import useLoading from '@hooks/useLoading'
 import dynamic from 'next/dynamic'

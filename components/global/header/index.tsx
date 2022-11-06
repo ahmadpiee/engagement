@@ -62,167 +62,165 @@ const Header: React.FC = props => {
     },
   ]
 
-  return <>
-    <Flex
-      {...props}
-      as="header"
-      position="fixed"
-      zIndex="100"
-      w="full"
-      justifySelf="center"
-      bg={colorMode === 'light' ? colors.whiteGradient : colors.darkGradient}
-      color={colorMode === 'light' ? colors.black.light : colors.pinkGradient}
-      justifyContent="space-evenly"
-      p={{ base: '1rem 0' }}
-      pl={{ base: '1rem', xl: '300', lg: '1rem' }}
-      pr={{ base: '1rem', xl: '300', lg: '1rem' }}
-    >
-      <Flex align="center" mr={5}>
-        <Heading
-          as="h1"
-          size="md"
-          onClick={() => {
-            router.push('/')
-          }}
-          cursor="pointer"
-        >
-          {localize(locale, 'leftMenu')}
-        </Heading>
-      </Flex>
-      <Spacer />
-      <Box
-        display={{ base: 'none', md: 'none', lg: 'none', xl: 'flex' }}
-        mt={{ base: 4, md: 0 }}
+  return (
+    <>
+      <Flex
+        {...props}
+        as="header"
+        position="fixed"
+        zIndex="100"
+        w="full"
+        justifySelf="center"
+        bg={colorMode === 'light' ? colors.whiteGradient : colors.darkGradient}
+        color={colorMode === 'light' ? colors.black.light : colors.pinkGradient}
+        justifyContent="space-evenly"
+        p={{ base: '1rem 0' }}
+        pl={{ base: '1rem', xl: '300', lg: '1rem' }}
+        pr={{ base: '1rem', xl: '300', lg: '1rem' }}
       >
-        {Menus.map(data => (
-          <MenuItemsButton
+        <Flex align="center" mr={5}>
+          <Heading
+            as="h1"
+            size="md"
             onClick={() => {
-              router.push(data.url)
+              router.push('/')
             }}
-            key={data.id}
+            cursor="pointer"
           >
-            <Text fontSize="md">{data.name}</Text>
-          </MenuItemsButton>
-        ))}
-      </Box>
-      <Spacer />
-      {/* mode */}
-      <Box
-        display={{ base: 'none', md: 'flex' }}
-        mt={{ base: 4, md: 0 }}
-        alignContent="center"
-      >
-        <IconButton
-          size="xs"
-          bg="transparent"
-          icon={
-            colorMode === 'light' ? <BiMoon size={25} /> : <BiSun size={25} />
-          }
-          onClick={toggleColorMode}
-          aria-label="button"
-        />
-      </Box>
-      <Box display={{ base: 'block', md: 'none', lg: 'none' }}>
-        <IconButton
-          size="xs"
-          bg="transparent"
-          icon={
-            colorMode === 'light' ? <BiMoon size={25} /> : <BiSun size={25} />
-          }
-          onClick={toggleColorMode}
-          aria-label="button"
-        />
-      </Box>
+            {localize(locale, 'leftMenu')}
+          </Heading>
+        </Flex>
+        <Spacer />
+        <Box
+          display={{ base: 'none', md: 'none', lg: 'none', xl: 'flex' }}
+          mt={{ base: 4, md: 0 }}
+        >
+          {Menus.map(data => (
+            <MenuItemsButton
+              onClick={() => {
+                router.push(data.url)
+              }}
+              key={data.id}
+            >
+              <Text fontSize="md">{data.name}</Text>
+            </MenuItemsButton>
+          ))}
+        </Box>
+        <Spacer />
+        {/* mode */}
+        <Box
+          display={{ base: 'none', md: 'flex' }}
+          mt={{ base: 4, md: 0 }}
+          alignContent="center"
+        >
+          <IconButton
+            size="xs"
+            bg="transparent"
+            icon={
+              colorMode === 'light' ? <BiMoon size={25} /> : <BiSun size={25} />
+            }
+            onClick={toggleColorMode}
+            aria-label="button"
+          />
+        </Box>
+        <Box display={{ base: 'block', md: 'none', lg: 'none' }}>
+          <IconButton
+            size="xs"
+            bg="transparent"
+            icon={
+              colorMode === 'light' ? <BiMoon size={25} /> : <BiSun size={25} />
+            }
+            onClick={toggleColorMode}
+            aria-label="button"
+          />
+        </Box>
 
-      {/* flag */}
-      <Box ml={{ base: '3' }} mr={{ base: '3', xl: '0', lg: '3' }}>
-        {router.locale == 'en' ? (
-          (<Link
-            href={{
-              pathname: router.pathname,
-              query: { ...router.query },
-            }}
-            replace={true}
-            locale="id"
-          >
-
-            <IconButton size="xs" bg="transparent" aria-label="button">
-              <Image alt="Id Flag" src={IdFlag} />
-            </IconButton>
-
-          </Link>)
-        ) : router.locale == 'id' ? (
-          (<Link
-            href={{
-              pathname: router.pathname,
-              query: { ...router.query },
-            }}
-            replace={true}
-            locale="en"
-          >
-
-            <IconButton size="xs" bg="transparent" aria-label="button">
-              <Image layout="fill" alt="Id Flag" src={EnFlag} />
-            </IconButton>
-
-          </Link>)
-        ) : null}
-      </Box>
-      {/* burger button shows when lg */}
-      <IconButton
-        aria-label="button"
-        size="xs"
-        bg="transparent"
-        onClick={onOpen}
-        display={{ base: 'block', xl: 'none', lg: 'block' }}
-        p={0}
-      >
-        <GiHamburgerMenu size={20} />
-      </IconButton>
-    </Flex>
-
-    {/* drawer */}
-    <RenderDrawer
-      isOpen={isOpen}
-      onClose={onClose}
-      initialFocusRef={firstField}
-      bg={colorMode === 'dark' ? colors.darkGradient : colors.whiteGradient}
-      color={colorMode === 'dark' ? colors.white.main : colors.black.main}
-      placement="top"
-    >
-      {DrawerMenus.map(data => (
-        <Container key={data.id}>
-          <Flex w="full" justifyContent="space-between" alignItems="center">
-            <Box>
-              <IconButton
-                aria-label="button"
-                size="xs"
-                bg="transparent"
-                display={{ base: 'block', xl: 'none', lg: 'block' }}
-                p={0}
-                onClick={onClose}
-              >
-                <Text
-                  onClick={() => {
-                    router.push(data.url)
-                  }}
-                  fontSize="sm"
-                  paddingX="1"
-                  fontWeight="bold"
-                >
-                  {data.name}
-                </Text>
+        {/* flag */}
+        <Box ml={{ base: '3' }} mr={{ base: '3', xl: '0', lg: '3' }}>
+          {router.locale == 'en' ? (
+            <Link
+              href={{
+                pathname: router.pathname,
+                query: { ...router.query },
+              }}
+              replace={true}
+              locale="id"
+            >
+              <IconButton size="xs" bg="transparent" aria-label="button">
+                <Image alt="Id Flag" src={IdFlag} />
               </IconButton>
-            </Box>
-            <Box>
-              <Kbd>{data.kbd}</Kbd>
-            </Box>
-          </Flex>
-          <Divider />
-        </Container>
-      ))}
-    </RenderDrawer>
-  </>;
+            </Link>
+          ) : router.locale == 'id' ? (
+            <Link
+              href={{
+                pathname: router.pathname,
+                query: { ...router.query },
+              }}
+              replace={true}
+              locale="en"
+            >
+              <IconButton size="xs" bg="transparent" aria-label="button">
+                <Image alt="Id Flag" src={EnFlag} />
+              </IconButton>
+            </Link>
+          ) : null}
+        </Box>
+        {/* burger button shows when lg */}
+        <IconButton
+          aria-label="button"
+          size="xs"
+          bg="transparent"
+          onClick={onOpen}
+          display={{ base: 'block', xl: 'none', lg: 'block' }}
+          p={0}
+        >
+          <GiHamburgerMenu size={20} />
+        </IconButton>
+      </Flex>
+
+      {/* drawer */}
+      <RenderDrawer
+        isOpen={isOpen}
+        onClose={onClose}
+        initialFocusRef={firstField}
+        bg={colorMode === 'dark' ? colors.darkGradient : colors.whiteGradient}
+        color={colorMode === 'dark' ? colors.white.main : colors.black.main}
+        placement="top"
+      >
+        {DrawerMenus.map(data => (
+          <Container key={data.id}>
+            <Flex w="full" justifyContent="space-between" alignItems="center">
+              <Box>
+                <IconButton
+                  aria-label="button"
+                  size="xs"
+                  bg="transparent"
+                  display={{ base: 'block', xl: 'none', lg: 'block' }}
+                  p={0}
+                  onClick={onClose}
+                >
+                  <Text
+                    onClick={() => {
+                      router.push(data.url)
+                    }}
+                    fontSize="sm"
+                    paddingX="1"
+                    fontWeight="bold"
+                  >
+                    {data.name}
+                  </Text>
+                </IconButton>
+              </Box>
+              <Box>
+                <Kbd>{data.kbd}</Kbd>
+              </Box>
+            </Flex>
+            <Divider />
+          </Container>
+        ))}
+      </RenderDrawer>
+    </>
+  )
 }
 
 export default Header

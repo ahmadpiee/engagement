@@ -36,7 +36,6 @@ const SkeletonIntro: React.FC = () => {
           <SwiperSlide key={i}>
             <Skeleton>
               <Image
-                objectFit="cover"
                 placeholder="blur"
                 loading="lazy"
                 src={data.image}
