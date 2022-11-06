@@ -17,7 +17,7 @@ const Layout: React.FC<LayoutProps> = props => {
   return (
     <Box {...props} as="main">
       <Head>
-        <title>{title} - asof&apos;s</title>
+        <title>{title + ' ' + 'asof&apos;s'}</title>
         <meta name="description" content={description} />
         <meta name="keywords" content={keywords} />
         <meta

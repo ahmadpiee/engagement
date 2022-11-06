@@ -1,5 +1,3 @@
-/** @type {import('next').NextConfig} */
-
 const runtimeCaching = require('next-pwa/cache')
 const isProd = process.env.NODE_ENV === 'production'
 

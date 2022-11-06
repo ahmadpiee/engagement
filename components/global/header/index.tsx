@@ -147,7 +147,7 @@ const Header: React.FC = props => {
           >
 
             <IconButton size="xs" bg="transparent" aria-label="button">
-              <Image layout="fill" alt="Id Flag" src={IdFlag} />
+              <Image alt="Id Flag" src={IdFlag} />
             </IconButton>
 
           </Link>)

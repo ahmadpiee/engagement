@@ -28,7 +28,6 @@ export default class Document extends NextDocument {
         <meta property="og:locale" content="id_ID" />
         <meta property="og:locale:alternate" content="en_US" />
         <meta name="apple-mobile-web-app-status-bar" content="#FFFFFF" />
-        {/* twitter */}
         <meta name="twitter:url" content="https://muti.asof.dev" />
         <meta name="twitter:card" content="muti.asof.dev" />
         <meta name="twitter:title" content="Engagement Website" />
